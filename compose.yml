@@ -1,0 +1,8 @@
+services:
+  synthea:
+    build:
+      context: .
+    volumes:
+      - ./output:/output
+    command: java -jar synthea-with-dependencies.jar
+
