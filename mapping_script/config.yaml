@@ -1,0 +1,583 @@
+target_patient_ids:
+  - "ballantyne-flavia-indira"
+  - "ballantyne-kelvin-hans"
+  - "ballantyne-terry-bob"
+  - "banks-jeramy-ezra"
+  - "banks-jonas-cary"
+  - "belger-remedios"
+  - "black-kerry-dougal"
+  - "boulton-annika"
+  - "britton-brian-edwin"
+  - "callow-veronica-connie"
+  - "cane-cheyenne-elaina"
+  - "davis-juan"
+  - "dietrich-blake-louis"
+  - "dietrich-diedre-alicia"
+  - "dietrich-kimbra-althea"
+  - "dietrich-phillipa-grace"
+  - "foreman-caterina"
+  - "frost-rhett-kent"
+  - "hampton-jenice"
+  - "italia-sofia"
+  - "johnson-joyce"
+  - "little-rose-gretal"
+  - "lynch-alyce-shauna"
+  - "mackay-elliott"
+  - "mackay-fritz"
+  - "martin-shawn"
+  - "moffitt-heath-igor"
+  - "moylan-brock"
+  - "odonnell-gillian"
+  - "potts-felix-ernie"
+  - "robson-adam"
+  - "thomson-mika"
+  - "veitch-beau-bradley"
+  - "veitch-miles-dudley"
+  - "veitch-savannah-sheena"
+  - "irvine-ronny-lawrence"
+  - "banks-mia-leanne"
+  - "italia-sofia-suppressed-birthDate"
+  - "italia-sofia-suppressed-gender"
+  - "italia-sofia-missing-gender"
+  - "italia-sofia-missing-name"
+  - "italia-sofia-missing-birthDate"
+  - "baby-banks-john"
+  - "italia-sofia-missing-identifier"
+  - "baratz-toni2"
+  - "baratz-toni3"
+  - "1078d551-7be2-49f7-a122-c230b8757f2f"
+  - "archibald-dante"
+
+mapping:
+  allergies:
+  - from: START
+    to: TODO
+  - from: STOP
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: SYSTEM
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: TYPE
+    to: TODO
+  - from: CATEGORY
+    to: TODO
+  - from: REACTION1
+    to: TODO
+  - from: DESCRIPTION1
+    to: TODO
+  - from: SEVERITY1
+    to: TODO
+  - from: REACTION2
+    to: TODO
+  - from: DESCRIPTION2
+    to: TODO
+  - from: SEVERITY2
+    to: TODO
+  claims_transactions:
+  - from: ID
+    to: TODO
+  - from: CLAIMID
+    to: TODO
+  - from: CHARGEID
+    to: TODO
+  - from: PATIENTID
+    to: TODO
+  - from: TYPE
+    to: TODO
+  - from: AMOUNT
+    to: TODO
+  - from: METHOD
+    to: TODO
+  - from: FROMDATE
+    to: TODO
+  - from: TODATE
+    to: TODO
+  - from: PLACEOFSERVICE
+    to: TODO
+  - from: PROCEDURECODE
+    to: TODO
+  - from: MODIFIER1
+    to: TODO
+  - from: MODIFIER2
+    to: TODO
+  - from: DIAGNOSISREF1
+    to: TODO
+  - from: DIAGNOSISREF2
+    to: TODO
+  - from: DIAGNOSISREF3
+    to: TODO
+  - from: DIAGNOSISREF4
+    to: TODO
+  - from: UNITS
+    to: TODO
+  - from: DEPARTMENTID
+    to: TODO
+  - from: NOTES
+    to: TODO
+  - from: UNITAMOUNT
+    to: TODO
+  - from: TRANSFEROUTID
+    to: TODO
+  - from: TRANSFERTYPE
+    to: TODO
+  - from: PAYMENTS
+    to: TODO
+  - from: ADJUSTMENTS
+    to: TODO
+  - from: TRANSFERS
+    to: TODO
+  - from: OUTSTANDING
+    to: TODO
+  - from: APPOINTMENTID
+    to: TODO
+  - from: LINENOTE
+    to: TODO
+  - from: PATIENTINSURANCEID
+    to: TODO
+  - from: FEESCHEDULEID
+    to: TODO
+  - from: PROVIDERID
+    to: TODO
+  - from: SUPERVISINGPROVIDERID
+    to: TODO
+  encounters:
+  - from: Id
+    to: TODO
+  - from: START
+    to: TODO
+  - from: STOP
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ORGANIZATION
+    to: TODO
+  - from: PROVIDER
+    to: TODO
+  - from: PAYER
+    to: TODO
+  - from: ENCOUNTERCLASS
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: BASE_ENCOUNTER_COST
+    to: TODO
+  - from: TOTAL_CLAIM_COST
+    to: TODO
+  - from: PAYER_COVERAGE
+    to: TODO
+  - from: REASONCODE
+    to: TODO
+  - from: REASONDESCRIPTION
+    to: TODO
+  organizations:
+  - from: Id
+    to: TODO
+  - from: NAME
+    to: TODO
+  - from: ADDRESS
+    to: TODO
+  - from: CITY
+    to: TODO
+  - from: STATE
+    to: TODO
+  - from: ZIP
+    to: TODO
+  - from: LAT
+    to: TODO
+  - from: LON
+    to: TODO
+  - from: PHONE
+    to: TODO
+  - from: REVENUE
+    to: TODO
+  - from: UTILIZATION
+    to: TODO
+  supplies:
+  - from: DATE
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: QUANTITY
+    to: TODO
+  patients:
+  - from: Id
+    to: TODO
+  - from: BIRTHDATE
+    to: TODO
+  - from: DEATHDATE
+    to: TODO
+  - from: SSN
+    to: TODO
+  - from: DRIVERS
+    to: TODO
+  - from: PASSPORT
+    to: TODO
+  - from: PREFIX
+    to: TODO
+  - from: FIRST
+    to: TODO
+  - from: MIDDLE
+    to: TODO
+  - from: LAST
+    to: TODO
+  - from: SUFFIX
+    to: TODO
+  - from: MAIDEN
+    to: TODO
+  - from: MARITAL
+    to: TODO
+  - from: RACE
+    to: TODO
+  - from: ETHNICITY
+    to: TODO
+  - from: GENDER
+    to: TODO
+  - from: BIRTHPLACE
+    to: TODO
+  - from: ADDRESS
+    to: TODO
+  - from: CITY
+    to: TODO
+  - from: STATE
+    to: TODO
+  - from: COUNTY
+    to: TODO
+  - from: FIPS
+    to: TODO
+  - from: ZIP
+    to: TODO
+  - from: LAT
+    to: TODO
+  - from: LON
+    to: TODO
+  - from: HEALTHCARE_EXPENSES
+    to: TODO
+  - from: HEALTHCARE_COVERAGE
+    to: TODO
+  - from: INCOME
+    to: TODO
+  medications:
+  - from: START
+    to: TODO
+  - from: STOP
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: PAYER
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: BASE_COST
+    to: TODO
+  - from: PAYER_COVERAGE
+    to: TODO
+  - from: DISPENSES
+    to: TODO
+  - from: TOTALCOST
+    to: TODO
+  - from: REASONCODE
+    to: TODO
+  - from: REASONDESCRIPTION
+    to: TODO
+  careplans:
+  - from: Id
+    to: TODO
+  - from: START
+    to: TODO
+  - from: STOP
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: REASONCODE
+    to: TODO
+  - from: REASONDESCRIPTION
+    to: TODO
+  immunizations:
+  - from: DATE
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: BASE_COST
+    to: TODO
+  payers:
+  - from: Id
+    to: TODO
+  - from: NAME
+    to: TODO
+  - from: OWNERSHIP
+    to: TODO
+  - from: ADDRESS
+    to: TODO
+  - from: CITY
+    to: TODO
+  - from: STATE_HEADQUARTERED
+    to: TODO
+  - from: ZIP
+    to: TODO
+  - from: PHONE
+    to: TODO
+  - from: AMOUNT_COVERED
+    to: TODO
+  - from: AMOUNT_UNCOVERED
+    to: TODO
+  - from: REVENUE
+    to: TODO
+  - from: COVERED_ENCOUNTERS
+    to: TODO
+  - from: UNCOVERED_ENCOUNTERS
+    to: TODO
+  - from: COVERED_MEDICATIONS
+    to: TODO
+  - from: UNCOVERED_MEDICATIONS
+    to: TODO
+  - from: COVERED_PROCEDURES
+    to: TODO
+  - from: UNCOVERED_PROCEDURES
+    to: TODO
+  - from: COVERED_IMMUNIZATIONS
+    to: TODO
+  - from: UNCOVERED_IMMUNIZATIONS
+    to: TODO
+  - from: UNIQUE_CUSTOMERS
+    to: TODO
+  - from: QOLS_AVG
+    to: TODO
+  - from: MEMBER_MONTHS
+    to: TODO
+  devices:
+  - from: START
+    to: TODO
+  - from: STOP
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: UDI
+    to: TODO
+  imaging_studies:
+  - from: Id
+    to: TODO
+  - from: DATE
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: SERIES_UID
+    to: TODO
+  - from: BODYSITE_CODE
+    to: TODO
+  - from: BODYSITE_DESCRIPTION
+    to: TODO
+  - from: MODALITY_CODE
+    to: TODO
+  - from: MODALITY_DESCRIPTION
+    to: TODO
+  - from: INSTANCE_UID
+    to: TODO
+  - from: SOP_CODE
+    to: TODO
+  - from: SOP_DESCRIPTION
+    to: TODO
+  - from: PROCEDURE_CODE
+    to: TODO
+  providers:
+  - from: Id
+    to: TODO
+  - from: ORGANIZATION
+    to: TODO
+  - from: NAME
+    to: TODO
+  - from: GENDER
+    to: TODO
+  - from: SPECIALITY
+    to: TODO
+  - from: ADDRESS
+    to: TODO
+  - from: CITY
+    to: TODO
+  - from: STATE
+    to: TODO
+  - from: ZIP
+    to: TODO
+  - from: LAT
+    to: TODO
+  - from: LON
+    to: TODO
+  - from: ENCOUNTERS
+    to: TODO
+  - from: PROCEDURES
+    to: TODO
+  observations:
+  - from: DATE
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: CATEGORY
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: VALUE
+    to: TODO
+  - from: UNITS
+    to: TODO
+  - from: TYPE
+    to: TODO
+  payer_transitions:
+  - from: PATIENT
+    to: TODO
+  - from: MEMBERID
+    to: TODO
+  - from: START_DATE
+    to: TODO
+  - from: END_DATE
+    to: TODO
+  - from: PAYER
+    to: TODO
+  - from: SECONDARY_PAYER
+    to: TODO
+  - from: PLAN_OWNERSHIP
+    to: TODO
+  - from: OWNER_NAME
+    to: TODO
+  claims:
+  - from: Id
+    to: TODO
+  - from: PATIENTID
+    to: TODO
+  - from: PROVIDERID
+    to: TODO
+  - from: PRIMARYPATIENTINSURANCEID
+    to: TODO
+  - from: SECONDARYPATIENTINSURANCEID
+    to: TODO
+  - from: DEPARTMENTID
+    to: TODO
+  - from: PATIENTDEPARTMENTID
+    to: TODO
+  - from: DIAGNOSIS1
+    to: TODO
+  - from: DIAGNOSIS2
+    to: TODO
+  - from: DIAGNOSIS3
+    to: TODO
+  - from: DIAGNOSIS4
+    to: TODO
+  - from: DIAGNOSIS5
+    to: TODO
+  - from: DIAGNOSIS6
+    to: TODO
+  - from: DIAGNOSIS7
+    to: TODO
+  - from: DIAGNOSIS8
+    to: TODO
+  - from: REFERRINGPROVIDERID
+    to: TODO
+  - from: APPOINTMENTID
+    to: TODO
+  - from: CURRENTILLNESSDATE
+    to: TODO
+  - from: SERVICEDATE
+    to: TODO
+  - from: SUPERVISINGPROVIDERID
+    to: TODO
+  - from: STATUS1
+    to: TODO
+  - from: STATUS2
+    to: TODO
+  - from: STATUSP
+    to: TODO
+  - from: OUTSTANDING1
+    to: TODO
+  - from: OUTSTANDING2
+    to: TODO
+  - from: OUTSTANDINGP
+    to: TODO
+  - from: LASTBILLEDDATE1
+    to: TODO
+  - from: LASTBILLEDDATE2
+    to: TODO
+  - from: LASTBILLEDDATEP
+    to: TODO
+  - from: HEALTHCARECLAIMTYPEID1
+    to: TODO
+  - from: HEALTHCARECLAIMTYPEID2
+    to: TODO
+  procedures:
+  - from: START
+    to: TODO
+  - from: STOP
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: SYSTEM
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+  - from: BASE_COST
+    to: TODO
+  - from: REASONCODE
+    to: TODO
+  - from: REASONDESCRIPTION
+    to: TODO
+  conditions:
+  - from: START
+    to: TODO
+  - from: STOP
+    to: TODO
+  - from: PATIENT
+    to: TODO
+  - from: ENCOUNTER
+    to: TODO
+  - from: SYSTEM
+    to: TODO
+  - from: CODE
+    to: TODO
+  - from: DESCRIPTION
+    to: TODO
+
+
