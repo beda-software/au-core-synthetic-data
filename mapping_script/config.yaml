@@ -580,4 +580,27 @@ mapping:
   - from: DESCRIPTION
     to: TODO
 
+rename_files:
+  allergies: AU Core Sample Data - AllergyIntolerance
+  conditions: AU Core Sample Data - Condition
+  encounters: AU Core Sample Data - Encounter
+  immunizations: AU Core Sample Data - Immunization
+  medications: AU Core Sample Data - Medication
+  observations: AU Core Sample Data - Observation
+  organizations: AU Core Sample Data - Organization
+  procedures: AU Core Sample Data - Procedure
+
+add_ids_column:
+
+delete_files:
+  - careplans
+  - claims
+  - claims_transactions
+  - devices
+  - imaging_studies
+  - patients
+  - payers
+  - payer_transitions
+  - providers
+  - supplies
 

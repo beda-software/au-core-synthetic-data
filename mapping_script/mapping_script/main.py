@@ -19,35 +19,63 @@ def read_csv_files(path_to_original):
         df = pd.read_csv(csv_file)
         dataframes[resource_type] = df
 
-    return dataframes, mapping_fields
+    return dataframes
 
 def read_yaml_config(path_to_config):
     with open(path_to_config, 'r') as yaml_file:
         config = yaml.safe_load(yaml_file)
     return config
 
+def save_patients_mapping_file(path_to_result, mapped_patient_ids):
+    full_path_to_result = "{}/{}".format(path_to_result, "mapped_patients_info.yaml")
+    with open(full_path_to_result, 'w') as file:
+        yaml.dump({"patients": mapped_patient_ids}, file, default_flow_style=False, sort_keys=False)
+
+def replace_data(generated_data, mapped_patient_ids, mapping_config, rename_files, delete_files, path_to_result):
+    for resource_type in generated_data.keys():
+        if resource_type in delete_files:
+            continue
+
+        modified_df = generated_data[resource_type]
+
+        modified_df.replace(mapped_patient_ids, inplace=True)
+
+        if resource_type in mapping_config:
+            for mapping_config_item in mapping_config[resource_type]:
+                modified_df.rename(columns={mapping_config_item['from']: mapping_config_item['to']}, inplace=True)
+
+        result_filename = f"{rename_files.get(resource_type, resource_type)}.csv"
+
+        output_path = os.path.join(path_to_result, result_filename)
+        modified_df.to_csv(output_path, index=False)
+
+def check_config(config_data):
+    problems = []
+
+    mapping_config = config_data.get('mapping', {})
+    mapping_config_keys = mapping_config.keys()
+
+    if len(mapping_config_keys) != len(list(set(mapping_config_keys))):
+        problems.append("Duplicate keys in mapping variable")
+
+    return problems
+
 def main(path_to_original, path_to_config, path_to_result):
     try:
         data = read_csv_files(path_to_original)
-
         config = read_yaml_config(path_to_config)
-
         target_patient_ids = config.get('target_patient_ids', [])
+        mapping_config = config.get('mapping', {})
+        rename_files = config.get('rename_files', {})
+        delete_files = config.get('delete_files', [])
+
         if not target_patient_ids:
             print("No target_patient_ids found in the YAML configuration.")
 
         mapped_patient_ids = dict(zip(target_patient_ids, list(data['patients']['Id'])))
 
-        full_path_to_result = "{}/{}".format(path_to_result, "mapped_patients_info.yaml")
-        with open(full_path_to_result, 'w') as file:
-            yaml.dump({"patients": mapped_patient_ids}, file, default_flow_style=False, sort_keys=False)
-
-        for resource_type in data.keys():
-            modified_df = data[resource_type]
-            for target_patient_id in mapped_patient_ids.keys():
-                modified_df = modified_df.replace(mapped_patient_ids[target_patient_id], target_patient_id)
-            result_filename = "{}.csv".format(resource_type)
-            modified_df.to_csv("{}/{}".format(path_to_result, result_filename), index=False)
+        save_patients_mapping_file(path_to_result, mapped_patient_ids)
+        replace_data(data, mapped_patient_ids, mapping_config, rename_files, delete_files, path_to_result)
 
     except Exception as e:
         print(f"An error occurred: {e}")
