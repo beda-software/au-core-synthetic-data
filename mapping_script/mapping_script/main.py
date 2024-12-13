@@ -32,8 +32,13 @@ def save_patients_mapping_file(path_to_result, mapped_patient_ids):
     with open(full_path_to_result, 'w') as file:
         yaml.dump({"patients": mapped_patient_ids}, file, default_flow_style=False, sort_keys=False)
 
-def replace_data(generated_data, mapped_patient_ids, mapping_config, add_id_column,
-                 column_list, rename_files, delete_files, path_to_result):
+def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
+    mapping_config = config.get('mapping', {})
+    rename_files = config.get('rename_files', {})
+    delete_files = config.get('delete_files', [])
+    add_id_column = config.get('add_ids_column', [])
+    column_list = config.get('columns_list', {})
+
     for resource_type in generated_data.keys():
         if resource_type in delete_files:
             continue
@@ -65,11 +70,6 @@ def main(path_to_original, path_to_config, path_to_result):
         data = read_csv_files(path_to_original)
         config = read_yaml_config(path_to_config)
         target_patient_ids = config.get('target_patient_ids', [])
-        mapping_config = config.get('mapping', {})
-        rename_files = config.get('rename_files', {})
-        delete_files = config.get('delete_files', [])
-        add_id_column = config.get('add_ids_column', [])
-        column_list = config.get('columns_list', {})
 
         if not target_patient_ids:
             print("No target_patient_ids found in the YAML configuration.")
@@ -77,9 +77,7 @@ def main(path_to_original, path_to_config, path_to_result):
         mapped_patient_ids = dict(zip(target_patient_ids, list(data['patients']['Id'])))
 
         save_patients_mapping_file(path_to_result, mapped_patient_ids)
-        replace_data(data, mapped_patient_ids, mapping_config,
-                     add_id_column, column_list, rename_files,
-                     delete_files, path_to_result)
+        replace_data(data, path_to_result, config, mapped_patient_ids)
 
     except Exception as e:
         print(f"An error occurred: {e}")
