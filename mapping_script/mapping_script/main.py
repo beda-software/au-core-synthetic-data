@@ -1,4 +1,5 @@
 import os
+import uuid
 import pandas as pd
 import yaml
 import argparse
@@ -31,20 +32,28 @@ def save_patients_mapping_file(path_to_result, mapped_patient_ids):
     with open(full_path_to_result, 'w') as file:
         yaml.dump({"patients": mapped_patient_ids}, file, default_flow_style=False, sort_keys=False)
 
-def replace_data(generated_data, mapped_patient_ids, mapping_config, rename_files, delete_files, path_to_result):
+def replace_data(generated_data, mapped_patient_ids, mapping_config, add_id_column, rename_files, delete_files, path_to_result):
     for resource_type in generated_data.keys():
         if resource_type in delete_files:
+            print(f"Skip processing of the {resource_type}")
             continue
 
         modified_df = generated_data[resource_type]
 
+        if resource_type in add_id_column:
+            print(f"Add id column for {resource_type}")
+            modified_df['id'] = [uuid.uuid4() for _ in range(len(modified_df))]
+
+        print("Replace patient ids if needed...")
         modified_df.replace(mapped_patient_ids, inplace=True)
 
         if resource_type in mapping_config:
             for mapping_config_item in mapping_config[resource_type]:
+                print(f"Rename column from {mapping_config_item['from']} to {mapping_config_item['to']} for {resource_type}")
                 modified_df.rename(columns={mapping_config_item['from']: mapping_config_item['to']}, inplace=True)
 
         result_filename = f"{rename_files.get(resource_type, resource_type)}.csv"
+        print(f"Save file with name {result_filename}")
 
         output_path = os.path.join(path_to_result, result_filename)
         modified_df.to_csv(output_path, index=False)
@@ -68,6 +77,7 @@ def main(path_to_original, path_to_config, path_to_result):
         mapping_config = config.get('mapping', {})
         rename_files = config.get('rename_files', {})
         delete_files = config.get('delete_files', [])
+        add_id_column = config.get('add_ids_column', [])
 
         if not target_patient_ids:
             print("No target_patient_ids found in the YAML configuration.")
@@ -75,7 +85,7 @@ def main(path_to_original, path_to_config, path_to_result):
         mapped_patient_ids = dict(zip(target_patient_ids, list(data['patients']['Id'])))
 
         save_patients_mapping_file(path_to_result, mapped_patient_ids)
-        replace_data(data, mapped_patient_ids, mapping_config, rename_files, delete_files, path_to_result)
+        replace_data(data, mapped_patient_ids, mapping_config, add_id_column, rename_files, delete_files, path_to_result)
 
     except Exception as e:
         print(f"An error occurred: {e}")

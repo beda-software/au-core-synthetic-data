@@ -163,72 +163,72 @@ mapping:
     to: TODO
   immunizations:
   - from: DATE
-    to: TODO
+    to: occurrenceDateTime
   - from: PATIENT
-    to: TODO
+    to: patient_reference_id
   - from: ENCOUNTER
-    to: TODO
+    to: encounter_reference_id
   - from: CODE
-    to: TODO
+    to: vaccineCode_coding1_code
   - from: DESCRIPTION
-    to: TODO
+    to: vaccineCode_coding1_display
   - from: BASE_COST
     to: TODO
   observations:
   - from: DATE
-    to: TODO
+    to: effectiveDateTime
   - from: PATIENT
-    to: TODO
+    to: subject_reference_id
   - from: ENCOUNTER
-    to: TODO
+    to: encounter_reference_id
   - from: CATEGORY
-    to: TODO
+    to: category1_coding1_display
   - from: CODE
-    to: TODO
+    to: code_coding1_code
   - from: DESCRIPTION
-    to: TODO
+    to: code_coding1_display
   - from: VALUE
-    to: TODO
+    to: valueQuantity_value
   - from: UNITS
-    to: TODO
+    to: valueQuantity_unit
   - from: TYPE
-    to: TODO
+    to: valueCodeableConcept_coding1_display
   procedures:
   - from: START
-    to: TODO
+    to: performedDateTime
   - from: STOP
-    to: TODO
+    to: performedPeriod_end
   - from: PATIENT
-    to: TODO
+    to: subject_reference_id
   - from: ENCOUNTER
-    to: TODO
+    to: encounter_reference_id
   - from: SYSTEM
-    to: TODO
+    to: code_coding1_system
   - from: CODE
-    to: TODO
+    to: code_coding1_code
   - from: DESCRIPTION
-    to: TODO
+    to: code_coding1_display
   - from: BASE_COST
     to: TODO
   - from: REASONCODE
-    to: TODO
+    to: reasonCode1_coding1_code
   - from: REASONDESCRIPTION
-    to: TODO
+    to: reasonCode1_coding1_display
   conditions:
   - from: START
-    to: TODO
+    to: onsetDateTime
   - from: STOP
-    to: TODO
+    to: abatementDateTime
   - from: PATIENT
-    to: TODO
+    to: subject_reference_id
   - from: ENCOUNTER
-    to: TODO
+    to: encounter_reference_id
   - from: SYSTEM
-    to: TODO
+    to: code_coding1_system
   - from: CODE
-    to: TODO
+    to: code_coding1_code
   - from: DESCRIPTION
-    to: TODO
+    to: code_coding1_display
 
 rename_files:
   allergies: AU Core Sample Data - AllergyIntolerance
@@ -241,6 +241,12 @@ rename_files:
   procedures: AU Core Sample Data - Procedure
 
 add_ids_column:
+  - allergies
+  - conditions
+  - immunizations
+  - medications
+  - observations
+  - procedures
 
 delete_files:
   - careplans
