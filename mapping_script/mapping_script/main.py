@@ -33,6 +33,14 @@ def save_patients_mapping_file(path_to_result, mapped_patient_ids):
     with open(full_path_to_result, 'w') as file:
         yaml.dump({"patients": mapped_patient_ids}, file, default_flow_style=False, sort_keys=False)
 
+def update_row_with_random_dict(row, affected_rows, options):
+    random_option = random.choice(options)
+    for affected_row in affected_rows:
+        column_name = list(affected_row.keys())[0]
+        data_path = affected_row[column_name]
+        row[column_name] = random_option[data_path]
+    return row
+
 def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
     mapping_config = config.get('mapping', {})
     rename_files = config.get('rename_files', {})
@@ -68,12 +76,9 @@ def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
             current_postprocessing_config = post_processing[resource_type]
             for item, config in current_postprocessing_config.items():
                 affected_rows = config['affected_rows']
-                for affected_row in affected_rows:
-                    column_name = list(affected_row.keys())[0]
-                    data_path = affected_row[column_name]
-                    modified_df[column_name] = modified_df.apply(
-                        lambda row: random.choice(config['options'])[data_path], axis=1
-                    )
+                modified_df = modified_df.apply(
+                    lambda row: update_row_with_random_dict(
+                        row, affected_rows, config['options']), axis=1)
         result_filename = f"{rename_files.get(resource_type, resource_type)}.csv"
 
         output_path = os.path.join(path_to_result, result_filename)
