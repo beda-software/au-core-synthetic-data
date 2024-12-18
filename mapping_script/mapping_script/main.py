@@ -3,6 +3,7 @@ import uuid
 import pandas as pd
 import yaml
 import argparse
+import random
 
 def read_csv_files(path_to_original):
     csv_files = [
@@ -38,6 +39,7 @@ def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
     delete_files = config.get('delete_files', [])
     add_id_column = config.get('add_ids_column', [])
     column_list = config.get('columns_list', {})
+    post_processing = config.get('post_processing', {})
 
     for resource_type in generated_data.keys():
         if resource_type in delete_files:
@@ -60,6 +62,18 @@ def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
                 if col not in modified_df.columns:
                     modified_df[col] = ''
             modified_df = modified_df[cols]
+
+
+        if resource_type in post_processing:
+            current_postprocessing_config = post_processing[resource_type]
+            for item, config in current_postprocessing_config.items():
+                affected_rows = config['affected_rows']
+                for affected_row in affected_rows:
+                    column_name = list(affected_row.keys())[0]
+                    data_path = affected_row[column_name]
+                    modified_df[column_name] = modified_df.apply(
+                        lambda row: random.choice(config['options'])[data_path], axis=1
+                    )
         result_filename = f"{rename_files.get(resource_type, resource_type)}.csv"
 
         output_path = os.path.join(path_to_result, result_filename)
