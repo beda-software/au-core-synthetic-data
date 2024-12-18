@@ -792,3 +792,15 @@ post_processing:
           code: "unconfirmed"
           display: "Unconfirmed"
           text: "Unconfirmed"
+    criticality:
+      affected_rows:
+        - criticality: value
+      options:
+        - value: low
+        - value: high
+        - value: unable-to-assess
+    patientReferenceType:
+      affected_rows:
+        - patient_reference_type: value
+      options:
+        - value: Patient
