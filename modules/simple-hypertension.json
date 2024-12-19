@@ -30,9 +30,6 @@
       ],
       "distributed_transition": [
         {
-          "distribution": 1
-        },
-        {
           "transition": "Observation Heart Rate",
           "distribution": 1
         }
