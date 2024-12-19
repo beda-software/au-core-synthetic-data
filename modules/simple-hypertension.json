@@ -1,0 +1,314 @@
+{
+  "name": "simple-hypertension",
+  "remarks": [
+    "A blank module"
+  ],
+  "states": {
+    "Initial": {
+      "type": "Initial",
+      "distributed_transition": [
+        {
+          "transition": "GP Visit",
+          "distribution": 1
+        }
+      ]
+    },
+    "Terminal": {
+      "type": "Terminal"
+    },
+    "GP Visit": {
+      "type": "Encounter",
+      "encounter_class": "ambulatory",
+      "reason": "TODO",
+      "telemedicine_possibility": "none",
+      "codes": [
+        {
+          "system": "SNOMED-CT",
+          "code": "gp-visit-code",
+          "display": "gp-visit-display"
+        }
+      ],
+      "distributed_transition": [
+        {
+          "distribution": 1
+        },
+        {
+          "transition": "Observation Heart Rate",
+          "distribution": 1
+        }
+      ]
+    },
+    "Observation Heart Rate": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "bpm",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "heart-rate-code",
+          "display": "heart-rate-display"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 87
+        }
+      },
+      "direct_transition": "Observation Blood Pressure"
+    },
+    "Observation Weight": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "kg",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "weight-code",
+          "display": "weight-display"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 125
+        }
+      },
+      "direct_transition": "Observation Height"
+    },
+    "Observation Height": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "cm",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "height-code",
+          "display": "height-display"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 179
+        }
+      },
+      "distributed_transition": [
+        {
+          "transition": "Observation Body Temperature",
+          "distribution": 1
+        }
+      ]
+    },
+    "Observation Body Temperature": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "C",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "body-temperature-code",
+          "display": "body-temperature-display"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 37.2
+        }
+      },
+      "distributed_transition": [
+        {
+          "transition": "Observation Smoking Status",
+          "distribution": 1
+        }
+      ]
+    },
+    "Observation Smoking Status": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "TODO",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "smoking-status-code",
+          "display": "smoking-status-display"
+        }
+      ],
+      "value_code": {
+        "system": "SNOMED-CT",
+        "code": "smoking-status-smoker-code",
+        "display": "smoking-status-smoker-display"
+      },
+      "distributed_transition": [
+        {
+          "transition": "Observation Respiration Rate",
+          "distribution": 1
+        }
+      ]
+    },
+    "Observation Respiration Rate": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "breaths/minute",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "resp-rate-code",
+          "display": "resp-rate-display"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 22
+        }
+      },
+      "distributed_transition": [
+        {
+          "transition": "Observation Waist Circumference",
+          "distribution": 1
+        }
+      ]
+    },
+    "Observation Waist Circumference": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "cm",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "waist-circum-code",
+          "display": "waist-circum-display"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 78.6
+        }
+      },
+      "distributed_transition": [
+        {
+          "transition": "Condition High Blood Pressure",
+          "distribution": 1
+        }
+      ]
+    },
+    "Condition High Blood Pressure": {
+      "type": "ConditionOnset",
+      "codes": [
+        {
+          "system": "SNOMED-CT",
+          "code": "high-blood-pressure-code",
+          "display": "high-blood-pressure-display"
+        }
+      ],
+      "target_encounter": "GP Visit",
+      "distributed_transition": [
+        {
+          "transition": "Procedure Meditation",
+          "distribution": 1
+        }
+      ]
+    },
+    "Procedure Meditation": {
+      "type": "Procedure",
+      "codes": [
+        {
+          "system": "SNOMED-CT",
+          "code": "procedure-code",
+          "display": "procedure-display"
+        }
+      ],
+      "distribution": {
+        "kind": "UNIFORM",
+        "parameters": {
+          "high": 15,
+          "low": 5
+        }
+      },
+      "unit": "minutes",
+      "distributed_transition": [
+        {
+          "transition": "Midication Order",
+          "distribution": 1
+        }
+      ]
+    },
+    "Midication Order": {
+      "type": "MedicationOrder",
+      "codes": [
+        {
+          "system": "RxNorm",
+          "code": "edarbi-code",
+          "display": "edarbi-display"
+        }
+      ],
+      "chronic": false,
+      "reason": "Select Condition/Enter Attribute",
+      "administration": true,
+      "distributed_transition": [
+        {
+          "transition": "Terminal",
+          "distribution": 1
+        }
+      ]
+    },
+    "Observation Blood Pressure": {
+      "type": "MultiObservation",
+      "category": "vital-signs",
+      "number_of_observations": 0,
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "blood-pressure-code",
+          "display": "blood-pressure-display"
+        }
+      ],
+      "distributed_transition": [
+        {
+          "distribution": 1,
+          "transition": "Observation Weight"
+        }
+      ],
+      "observations": [
+        {
+          "category": "vital-signs",
+          "unit": "mm",
+          "codes": [
+            {
+              "system": "LOINC",
+              "code": "systolic-bp-code",
+              "display": "systolic-bp-display"
+            }
+          ],
+          "exact": {
+            "quantity": 200
+          }
+        },
+        {
+          "category": "vital-signs",
+          "unit": "mm",
+          "codes": [
+            {
+              "system": "LOINC",
+              "code": "diastolic-bp-code",
+              "display": "diastolic-bp-code"
+            }
+          ],
+          "exact": {
+            "quantity": 110
+          }
+        }
+      ]
+    }
+  },
+  "gmf_version": 2
+}

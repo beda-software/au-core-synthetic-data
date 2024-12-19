@@ -4,5 +4,6 @@ services:
       context: .
     volumes:
       - ./output:/output
-    command: java -jar synthea-with-dependencies.jar --exporter.csv.export=true -p 100
+      - ./modules:/modules
+    command: java -jar synthea-with-dependencies.jar --exporter.csv.export=true -p 1 -d modules/
 
