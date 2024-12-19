@@ -24,8 +24,8 @@
       "codes": [
         {
           "system": "SNOMED-CT",
-          "code": "gp-visit-code",
-          "display": "gp-visit-display"
+          "code": "241219-gp-visit-code",
+          "display": "241219-gp-visit-display"
         }
       ],
       "distributed_transition": [
@@ -42,8 +42,8 @@
       "codes": [
         {
           "system": "LOINC",
-          "code": "heart-rate-code",
-          "display": "heart-rate-display"
+          "code": "241219-heart-rate-code",
+          "display": "241219-heart-rate-display"
         }
       ],
       "distribution": {
@@ -53,7 +53,12 @@
           "value": 87
         }
       },
-      "direct_transition": "Observation Blood Pressure"
+      "distributed_transition": [
+        {
+          "transition": "Observation Blood Pressure",
+          "distribution": 1
+        }
+      ]
     },
     "Observation Weight": {
       "type": "Observation",
@@ -62,8 +67,8 @@
       "codes": [
         {
           "system": "LOINC",
-          "code": "weight-code",
-          "display": "weight-display"
+          "code": "241219-weight-code",
+          "display": "241219-weight-display"
         }
       ],
       "distribution": {
@@ -82,8 +87,8 @@
       "codes": [
         {
           "system": "LOINC",
-          "code": "height-code",
-          "display": "height-display"
+          "code": "241219-height-code",
+          "display": "241219-height-display"
         }
       ],
       "distribution": {
@@ -107,7 +112,7 @@
       "codes": [
         {
           "system": "LOINC",
-          "code": "body-temperature-code",
+          "code": "241219-body-temperature-code",
           "display": "body-temperature-display"
         }
       ],
@@ -132,13 +137,13 @@
       "codes": [
         {
           "system": "LOINC",
-          "code": "smoking-status-code",
+          "code": "241219-smoking-status-code",
           "display": "smoking-status-display"
         }
       ],
       "value_code": {
         "system": "SNOMED-CT",
-        "code": "smoking-status-smoker-code",
+        "code": "241219-smoking-status-smoker-code",
         "display": "smoking-status-smoker-display"
       },
       "distributed_transition": [
@@ -180,7 +185,7 @@
       "codes": [
         {
           "system": "LOINC",
-          "code": "waist-circum-code",
+          "code": "241219-waist-circum-code",
           "display": "waist-circum-display"
         }
       ],
@@ -203,7 +208,7 @@
       "codes": [
         {
           "system": "SNOMED-CT",
-          "code": "high-blood-pressure-code",
+          "code": "241219-high-blood-pressure-code",
           "display": "high-blood-pressure-display"
         }
       ],
@@ -220,7 +225,7 @@
       "codes": [
         {
           "system": "SNOMED-CT",
-          "code": "procedure-code",
+          "code": "241219-procedure-code",
           "display": "procedure-display"
         }
       ],
@@ -244,7 +249,7 @@
       "codes": [
         {
           "system": "RxNorm",
-          "code": "edarbi-code",
+          "code": "241219-edarbi-code",
           "display": "edarbi-display"
         }
       ],
@@ -265,8 +270,8 @@
       "codes": [
         {
           "system": "LOINC",
-          "code": "blood-pressure-code",
-          "display": "blood-pressure-display"
+          "code": "241219-blood-pressure-code",
+          "display": "241219-blood-pressure-display"
         }
       ],
       "distributed_transition": [
@@ -282,8 +287,8 @@
           "codes": [
             {
               "system": "LOINC",
-              "code": "systolic-bp-code",
-              "display": "systolic-bp-display"
+              "code": "241219-systolic-bp-code",
+              "display": "241219-systolic-bp-display"
             }
           ],
           "exact": {
@@ -296,8 +301,8 @@
           "codes": [
             {
               "system": "LOINC",
-              "code": "diastolic-bp-code",
-              "display": "diastolic-bp-code"
+              "code": "241219-diastolic-bp-code",
+              "display": "241219-diastolic-bp-code"
             }
           ],
           "exact": {
