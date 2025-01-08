@@ -1,5 +1,9 @@
 .PHONY: synthea mapping_script
 
+validate-result:
+	# java -jar validator_cli.jar results/ -ig hl7.fhir.au.core#1.0.0-preview -tx https://tx.dev.hl7.org.au/fhir
+	java -jar validator_cli.jar results/ -ig hl7.fhir.au.core#1.0.0-preview
+
 pipeline:
 	rm -rf results/*
 	rm -rf au-fhir-test-data/testdata-csv/*
@@ -16,3 +20,4 @@ pipeline:
 	cp ./Csv2FhirMapping-linux-x64-binaries/Csv2Fhir ./au-fhir-test-data/Sparked.Csv2FhirMapping/
 	- ./mapping-script.sh; 	false
 	cp au-fhir-test-data/generated/* ./results/
+	validate-result
