@@ -1,10 +1,8 @@
-compose = docker compose
-
-.PHONY: build up run
-
 build:
-    $(compose) build
+	docker compose build
 
 up:
-	$(compose) up
+	docker compose up
 
+cleanup:
+	sudo rm -rf output/*

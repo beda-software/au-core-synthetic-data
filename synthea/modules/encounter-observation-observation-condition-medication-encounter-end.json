@@ -1,0 +1,96 @@
+{
+  "name": "Encounter + Observation + Observation + Condition + Medication + Encounter end",
+  "remarks": [
+    "A blank module"
+  ],
+  "states": {
+    "Initial": {
+      "type": "Initial",
+      "direct_transition": "Encounter"
+    },
+    "Terminal": {
+      "type": "Terminal"
+    },
+    "Encounter": {
+      "type": "Encounter",
+      "encounter_class": "ambulatory",
+      "reason": "",
+      "telemedicine_possibility": "none",
+      "codes": [
+        {
+          "system": "SNOMED-CT",
+          "code": "250106-6-encounter-start",
+          "display": "SNOMED Code"
+        }
+      ],
+      "direct_transition": "Observation 1"
+    },
+    "Observation 1": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "250106-6-observation-1",
+          "display": "LOINC Code"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 1
+        }
+      },
+      "direct_transition": "Observation 2"
+    },
+    "Observation 2": {
+      "type": "Observation",
+      "category": "vital-signs",
+      "unit": "",
+      "codes": [
+        {
+          "system": "LOINC",
+          "code": "250106-6-observation-2",
+          "display": "LOINC Code"
+        }
+      ],
+      "distribution": {
+        "kind": "EXACT",
+        "round": false,
+        "parameters": {
+          "value": 1
+        }
+      },
+      "direct_transition": "Condition"
+    },
+    "Condition": {
+      "type": "ConditionOnset",
+      "codes": [
+        {
+          "system": "SNOMED-CT",
+          "code": "250106-6-Condition",
+          "display": "SNOMED Code"
+        }
+      ],
+      "direct_transition": "Medication"
+    },
+    "Medication": {
+      "type": "MedicationOrder",
+      "codes": [
+        {
+          "system": "RxNorm",
+          "code": "250106-6-Medication",
+          "display": "RxNorm Code"
+        }
+      ],
+      "direct_transition": "Encounter end"
+    },
+    "Encounter end": {
+      "type": "EncounterEnd",
+      "direct_transition": "Terminal"
+    }
+  },
+  "gmf_version": 2
+}

@@ -1,1 +1,4 @@
 synthea/output/*
+/results/*
+/mapping_script/mapping_results/*
+/mapping_script/csv_source/*
