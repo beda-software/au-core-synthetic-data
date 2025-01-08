@@ -2,7 +2,7 @@
 
 validate-result:
 	# java -jar validator_cli.jar results/ -ig hl7.fhir.au.core#1.0.0-preview -tx https://tx.dev.hl7.org.au/fhir
-	java -jar validator_cli.jar results/ -ig hl7.fhir.au.core#1.0.0-preview
+	java -jar validator_cli.jar results/ -ig hl7.fhir.au.core#1.0.0-preview -hintAboutNonMustSupport
 
 pipeline:
 	rm -rf results/*

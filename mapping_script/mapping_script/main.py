@@ -41,6 +41,13 @@ def update_row_with_random_dict(row, affected_rows, options):
         row[column_name] = random_option[data_path]
     return row
 
+def update_row_with_specific_data(row, affected_row, options):
+    for option in options:
+        if row[affected_row] == option['from']:
+            row[affected_row] = option['to']
+
+    return row
+
 def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
     mapping_config = config.get('mapping', {})
     rename_files = config.get('rename_files', {})
@@ -75,10 +82,19 @@ def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
         if resource_type in post_processing:
             current_postprocessing_config = post_processing[resource_type]
             for item, config in current_postprocessing_config.items():
-                affected_rows = config['affected_rows']
-                modified_df = modified_df.apply(
-                    lambda row: update_row_with_random_dict(
-                        row, affected_rows, config['options']), axis=1)
+                random_options = config.get("rand_options", {})
+                find_and_replace = config.get("find_and_replace", {})
+                if find_and_replace.keys():
+                    affected_row = find_and_replace['affected_row']
+                    options = find_and_replace['options']
+                    modified_df = modified_df.apply(
+                        lambda row: update_row_with_specific_data(
+                            row, affected_row, options), axis=1)
+                if random_options.keys():
+                    affected_rows = random_options['affected_rows']
+                    modified_df = modified_df.apply(
+                        lambda row: update_row_with_random_dict(
+                            row, affected_rows, random_options['options']), axis=1)
         result_filename = f"{rename_files.get(resource_type, resource_type)}.csv"
 
         output_path = os.path.join(path_to_result, result_filename)

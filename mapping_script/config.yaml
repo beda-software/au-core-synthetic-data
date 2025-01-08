@@ -759,88 +759,148 @@ columns_list:
     - note_text
 
 post_processing:
+  procedures:
+    code:
+      find_and_replace:
+        affected_row: "code_coding1_code"
+        options:
+          - from: "250106-6-procedure"
+            to: "229299002"
+  observations:
+    code:
+      rand_options:
+        affected_rows:
+          - code_coding1_system: system
+        options:
+          - system: "http://loinc.org"
+      find_and_replace:
+        affected_row: "code_coding1_code"
+        options:
+          - from: "250106-6-observation-1"
+            to: "8867-4"
+          - from: "250106-6-observation-2"
+            to: "29463-7"
+    category:
+      rand_options:
+        affected_rows:
+          - category1_coding1_system: system
+          - category1_coding1_code: code
+          - category1_coding1_display: display
+          - category1_text: display
+        options:
+          - system: "http://terminology.hl7.org/CodeSystem/observation-category"
+            code: "vital-signs"
+            display: "Vital Signs"
+  encounters:
+    class:
+      rand_options:
+        affected_rows:
+          - class_system: system
+          - class_code: code
+          - class_display: display
+        options:
+          - system: "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+            code: "AMB"
+            display: "ambulatory"
+    type:
+      rand_options:
+        affected_rows:
+          - type_system: system
+          - type_code: code
+          - type_display: display
+        options:
+          - system: "http://snomed.info/sct"
+            code: "866149003"
+            display: "Annual visit"
   conditions:
     category:
-      affected_rows:
-        - category1_system: system
-        - category1_code: code
-        - category1_display: display
-        - category_text: text
-      options:
-        - system: "http://terminology.hl7.org/CodeSystem/condition-category"
-          code: "problem-list-item"
-          display: "Problem List Item"
-          text: "Problem List Item"
+      rand_options:
+        affected_rows:
+          - category1_system: system
+          - category1_code: code
+          - category1_display: display
+          - category_text: text
+        options:
+          - system: "http://terminology.hl7.org/CodeSystem/condition-category"
+            code: "problem-list-item"
+            display: "Problem List Item"
+            text: "Problem List Item"
     clinicalStatus:
-      affected_rows:
-        - clinicalStatus_system: system
-        - clinicalStatus_code: code
-        - clinicalStatus_display: display
-        - clinicalStatus_text: text
-      options:
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
-          code: "active"
-          display: "Active"
-          text: "Active"
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
-          code: "inactive"
-          display: "Inactive"
-          text: "Inactive"
+      rand_options:
+        affected_rows:
+          - clinicalStatus_system: system
+          - clinicalStatus_code: code
+          - clinicalStatus_display: display
+          - clinicalStatus_text: text
+        options:
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
+            code: "active"
+            display: "Active"
+            text: "Active"
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
+            code: "inactive"
+            display: "Inactive"
+            text: "Inactive"
     verificationStatus:
-      affected_rows:
-        - verificationStatus_system: system
-        - verificationStatus_code: code
-        - verificationStatus_display: display
-        - verificationStatus_text: text
-      options:
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
-          code: "confirmed"
-          display: "Confirmed"
-          text: "Confirmed"
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
-          code: "unconfirmed"
-          display: "Unconfirmed"
-          text: "Unconfirmed"
+      rand_options:
+        affected_rows:
+          - verificationStatus_system: system
+          - verificationStatus_code: code
+          - verificationStatus_display: display
+          - verificationStatus_text: text
+        options:
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
+            code: "confirmed"
+            display: "Confirmed"
+            text: "Confirmed"
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
+            code: "unconfirmed"
+            display: "Unconfirmed"
+            text: "Unconfirmed"
   allergies:
     clinicalStatus:
-      affected_rows:
-        - clinicalStatus_system: system
-        - clinicalStatus_code: code
-        - clinicalStatus_display: display
-        - clinicalStatus_text: text
-      options:
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
-          code: "active"
-          display: "Active"
-          text: "Active"
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
-          code: "inactive"
-          display: "Inactive"
-          text: "Inactive"
+      rand_options:
+        affected_rows:
+          - clinicalStatus_system: system
+          - clinicalStatus_code: code
+          - clinicalStatus_display: display
+          - clinicalStatus_text: text
+        options:
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
+            code: "active"
+            display: "Active"
+            text: "Active"
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
+            code: "inactive"
+            display: "Inactive"
+            text: "Inactive"
     verificationStatus:
-      affected_rows:
-        - verificationStatus_system: system
-        - verificationStatus_code: code
-        - verificationStatus_display: display
-        - verificationStatus_text: text
-      options:
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
-          code: "confirmed"
-          display: "Confirmed"
-          text: "Confirmed"
-        - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
-          code: "unconfirmed"
-          display: "Unconfirmed"
-          text: "Unconfirmed"
+      rand_options:
+        affected_rows:
+          - verificationStatus_system: system
+          - verificationStatus_code: code
+          - verificationStatus_display: display
+          - verificationStatus_text: text
+        options:
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
+            code: "confirmed"
+            display: "Confirmed"
+            text: "Confirmed"
+          - system: "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
+            code: "unconfirmed"
+            display: "Unconfirmed"
+            text: "Unconfirmed"
     criticality:
-      affected_rows:
-        - criticality: value
-      options:
-        - value: low
-        - value: high
-        - value: unable-to-assess
+      rand_options:
+        affected_rows:
+          - criticality: value
+        options:
+          - value: low
+          - value: high
+          - value: unable-to-assess
     patientReferenceType:
-      affected_rows:
-        - patient_reference_type: value
-      options:
-        - value: Patient
+      rand_options:
+        affected_rows:
+          - patient_reference_type: value
+        options:
+          - value: Patient

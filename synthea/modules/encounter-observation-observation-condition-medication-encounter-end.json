@@ -28,39 +28,35 @@
     "Observation 1": {
       "type": "Observation",
       "category": "vital-signs",
-      "unit": "",
+      "unit": "bpm",
       "codes": [
         {
           "system": "LOINC",
           "code": "250106-6-observation-1",
-          "display": "LOINC Code"
+          "display": "Heart rate"
         }
       ],
-      "distribution": {
-        "kind": "EXACT",
-        "round": false,
-        "parameters": {
-          "value": 1
-        }
-      },
-      "direct_transition": "Observation 2"
+      "direct_transition": "Observation 2",
+      "exact": {
+        "quantity": 76
+      }
     },
     "Observation 2": {
       "type": "Observation",
       "category": "vital-signs",
-      "unit": "",
+      "unit": "kg",
       "codes": [
         {
           "system": "LOINC",
           "code": "250106-6-observation-2",
-          "display": "LOINC Code"
+          "display": "Body weight"
         }
       ],
       "distribution": {
         "kind": "EXACT",
         "round": false,
         "parameters": {
-          "value": 1
+          "value": 142
         }
       },
       "direct_transition": "Condition"
@@ -111,7 +107,7 @@
         {
           "system": "SNOMED-CT",
           "code": "250106-6-procedure",
-          "display": "SNOMED Code"
+          "display": "Relaxed breathing"
         }
       ],
       "distribution": {
