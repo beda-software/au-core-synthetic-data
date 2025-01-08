@@ -85,11 +85,56 @@
           "display": "RxNorm Code"
         }
       ],
-      "direct_transition": "Encounter end"
+      "direct_transition": "Allergy"
     },
     "Encounter end": {
       "type": "EncounterEnd",
       "direct_transition": "Terminal"
+    },
+    "Allergy": {
+      "allergy_type": "allergy",
+      "category": "medication",
+      "type": "AllergyOnset",
+      "codes": [
+        {
+          "system": "SNOMED-CT",
+          "code": "250106-6-allergy",
+          "display": "SNOMED Code"
+        }
+      ],
+      "reactions": [],
+      "direct_transition": "Procedure"
+    },
+    "Procedure": {
+      "type": "Procedure",
+      "codes": [
+        {
+          "system": "SNOMED-CT",
+          "code": "250106-6-procedure",
+          "display": "SNOMED Code"
+        }
+      ],
+      "distribution": {
+        "kind": "UNIFORM",
+        "parameters": {
+          "high": 60,
+          "low": 30
+        }
+      },
+      "unit": "minutes",
+      "direct_transition": "Immunization"
+    },
+    "Immunization": {
+      "type": "Vaccine",
+      "series": 1,
+      "codes": [
+        {
+          "system": "CVX",
+          "code": "250106-6-immunization",
+          "display": "CVX Vaccine Code"
+        }
+      ],
+      "direct_transition": "Encounter end"
     }
   },
   "gmf_version": 2

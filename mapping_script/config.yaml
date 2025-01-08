@@ -93,8 +93,6 @@ mapping:
     to: serviceProvider_reference_id
   - from: PROVIDER
     to: participant1_individual_reference_id
-  - from: PAYER
-    to: serviceProvider_reference_id
   - from: ENCOUNTERCLASS
     to: class_code
   - from: CODE
