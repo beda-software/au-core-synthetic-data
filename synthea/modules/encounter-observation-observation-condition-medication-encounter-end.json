@@ -67,7 +67,7 @@
         {
           "system": "SNOMED-CT",
           "code": "250106-6-Condition",
-          "display": "SNOMED Code"
+          "display": "Hypertension"
         }
       ],
       "direct_transition": "Medication"
@@ -81,7 +81,22 @@
           "display": "RxNorm Code"
         }
       ],
-      "direct_transition": "Allergy"
+      "direct_transition": "Allergy",
+      "reason": "Select Condition/Enter Attribute",
+      "prescription": {
+        "dosage": {
+          "amount": 1,
+          "frequency": 1,
+          "period": 1,
+          "unit": "days"
+        },
+        "duration": {
+          "quantity": 1,
+          "unit": "days"
+        }
+      },
+      "chronic": false,
+      "administration": false
     },
     "Encounter end": {
       "type": "EncounterEnd",

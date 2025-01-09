@@ -48,6 +48,18 @@ def update_row_with_specific_data(row, affected_row, options):
 
     return row
 
+def update_row_using_case_data(row, cond_case):
+    case_row = cond_case.get("case", "")
+    conditions = cond_case.get("when", {})
+
+    for key in conditions.keys():
+        if row[case_row] == key:
+            conditional_data_list = conditions[key]
+            for conditional_data in conditional_data_list:
+                row[conditional_data['row']] = conditional_data['value']
+
+    return row
+
 def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
     mapping_config = config.get('mapping', {})
     rename_files = config.get('rename_files', {})
@@ -84,6 +96,12 @@ def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
             for item, config in current_postprocessing_config.items():
                 random_options = config.get("rand_options", {})
                 find_and_replace = config.get("find_and_replace", {})
+                conditional_op = config.get("conditional_op", [])
+                if conditional_op:
+                    for cond_case in conditional_op:
+                        modified_df = modified_df.apply(
+                            lambda row: update_row_using_case_data(
+                                row, cond_case), axis=1)
                 if find_and_replace.keys():
                     affected_row = find_and_replace['affected_row']
                     options = find_and_replace['options']

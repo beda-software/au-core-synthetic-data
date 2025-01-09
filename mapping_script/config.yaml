@@ -133,32 +133,10 @@ mapping:
   - from: UTILIZATION
     to: TODO
   medications:
-  - from: START
-    to: TODO
-  - from: STOP
-    to: TODO
-  - from: PATIENT
-    to: TODO
-  - from: PAYER
-    to: TODO
-  - from: ENCOUNTER
-    to: TODO
   - from: CODE
-    to: code_coding1_code
-  - from: DESCRIPTION
-    to: code_coding1_display
-  - from: BASE_COST
-    to: TODO
-  - from: PAYER_COVERAGE
-    to: TODO
-  - from: DISPENSES
-    to: TODO
-  - from: TOTALCOST
-    to: TODO
-  - from: REASONCODE
-    to: TODO
-  - from: REASONDESCRIPTION
-    to: TODO
+    to: medication_coding1_code
+  - from: PATIENT
+    to: subject_reference_id
   immunizations:
   - from: DATE
     to: occurrenceDateTime
@@ -233,7 +211,7 @@ rename_files:
   conditions: AU Core Sample Data - Condition
   encounters: AU Core Sample Data - Encounter
   immunizations: AU Core Sample Data - Immunization
-  medications: AU Core Sample Data - Medication
+  medications: AU Core Sample Data - MedicationRequest
   observations: AU Core Sample Data - Observation
   organizations: AU Core Sample Data - Organization
   procedures: AU Core Sample Data - Procedure
@@ -516,41 +494,69 @@ columns_list:
     - note_text
   medications:
     - id
-    - code_coding1_medicationType_code
-    - code_coding1_medicationType_display
-    - code_coding1_system
-    - code_coding1_code
-    - code_coding1_display
-    - code_coding2_system
-    - code_coding2_code
-    - code_coding2_display
-    - code_coding3_system
-    - code_coding3_code
-    - code_coding3_display
-    - code_text
-    - form_coding1_system
-    - form_coding1_code
-    - form_coding1_display
-    - form_coding2_system
-    - form_coding2_code
-    - form_coding2_display
-    - form_coding3_system
-    - form_coding3_code
-    - form_coding3_display
-    - ingredient_itemCodeableConcept_coding1_system
-    - ingredient_itemCodeableConcept_coding1_code
-    - ingredient_itemCodeableConcept_coding1_display
-    - ingredient_itemCodeableConcept_coding2_system
-    - ingredient_itemCodeableConcept_coding2_code
-    - ingredient_itemCodeableConcept_coding2_display
-    - ingredient_strength_numerator_value
-    - ingredient_strength_numerator_unit
-    - ingredient_strength_numerator_system
-    - ingredient_strength_numerator_code
-    - ingredient_strength_denominator_value
-    - ingredient_strength_denominator_unit
-    - ingredient_strength_denominator_system
-    - ingredient_strength_denominator_code
+    - status
+    - intent
+    - medication_coding1_system
+    - medication_coding1_code
+    - medication_coding1_display
+    - medication_coding2_system
+    - medication_coding2_code
+    - medication_coding2_display
+    - medication_text
+    - medication_reference_id
+    - medication_display
+    - subject_reference_id
+    - subject_display
+    - encounter_reference_id
+    - authoredOn
+    - requester_reference
+    - requester_display
+    - reasonCode1_coding1_system
+    - reasonCode1_coding1_code
+    - reasonCode1_coding1_display
+    - reasonCode1_text
+    - reasonReference1_reference
+    - note_text
+    - dosageInstruction_text
+    - dosageInstruction_timing_repeat_frequency
+    - dosageInstruction_timing_repeat_frequencyMax
+    - dosageInstruction_timing_repeat_period
+    - dosageInstruction_timing_repeat_periodMax
+    - dosageInstruction_timing_repeat_periodUnit
+    - dosageInstruction_asNeededBoolean
+    - dosageInstruction_route_coding_system
+    - dosageInstruction_route_coding_code
+    - dosageInstruction_route_coding_display
+    - dosageInstruction_route_text
+    - dosageInstruction_doseAndRate_doseQuantity_value
+    - dosageInstruction_doseAndRate_doseQuantity_unit
+    - dosageInstruction_doseAndRate_doseQuantity_system
+    - dosageInstruction_doseAndRate_doseQuantity_code
+    - dispenseRequest_dispenseInterval_value
+    - dispenseRequest_dispenseInterval_unit
+    - dispenseRequest_dispenseInterval_system
+    - dispenseRequest_dispenseInterval_code
+    - dispenseRequest_validityPeriod_start
+    - dispenseRequest_validityPeriod_end
+    - dispenseRequest_numberOfRepeatsAllowed
+    - dispenseRequest_quantity_value
+    - dispenseRequest_quantity_unit
+    - dispenseRequest_quantity_system
+    - dispenseRequest_quantity_code
+    - dispenseRequest_expectedSupplyDuration_value
+    - dispenseRequest_expectedSupplyDuration_unit
+    - dispenseRequest_expectedSupplyDuration_system
+    - dispenseRequest_expectedSupplyDuration_code
+    - dispenseRequest_performer_reference_id
+    - substitution_allowedBoolean
+    - contained_medication_code_coding1_system
+    - contained_code_coding1_code
+    - contained_medication_code_coding1_display
+    - contained_medication_code_text
+    - contained_medication_form_coding1_system
+    - contained_medication_form_coding1_code
+    - contained_medication_form_coding1_display
+    - contained_medication_form_text
   observations:
     - id
     - profile1
@@ -759,14 +765,48 @@ columns_list:
     - note_text
 
 post_processing:
+  medications:
+    intent:
+      conditional_op:
+        - case: "medication_coding1_code"
+          when:
+            "250106-6-Medication":
+              - row: "medication_coding1_code"
+                value: "778414007"
+              - row: "medication_coding1_system"
+                value: "http://snomed.info/sct"
+              - row: "medication_coding1_display"
+                value: "Azilsartan only product in oral dose form"
+        - case: "intent"
+          when:
+            "":
+              - row: "intent"
+                value: "order"
   procedures:
     code:
-      find_and_replace:
-        affected_row: "code_coding1_code"
-        options:
-          - from: "250106-6-procedure"
-            to: "229299002"
+      conditional_op:
+        - case: "code_coding1_code"
+          when:
+            "250106-6-procedure":
+              - row: "code_coding1_code"
+                value: "229299002"
   observations:
+    value:
+      conditional_op:
+        - case: "valueQuantity_unit"
+          when:
+            kg:
+              - row: "valueQuantity_system"
+                value: "http://unitsofmeasure.org"
+              - row: "valueQuantity_code"
+                value: "kg"
+            bpm:
+              - row: "valueQuantity_unit"
+                value: "beats/minute"
+              - row: "valueQuantity_system"
+                value: "http://unitsofmeasure.org"
+              - row: "valueQuantity_code"
+                value: "/min"
     code:
       rand_options:
         affected_rows:
@@ -813,6 +853,12 @@ post_processing:
             code: "866149003"
             display: "Annual visit"
   conditions:
+    code:
+      find_and_replace:
+        affected_row: "code_coding1_code"
+        options:
+          - from: "250106-6-Condition"
+            to: "38341003"
     category:
       rand_options:
         affected_rows:
@@ -858,6 +904,19 @@ post_processing:
             display: "Unconfirmed"
             text: "Unconfirmed"
   allergies:
+    code:
+      conditional_op:
+        - case: "code_coding1_code"
+          when:
+            "250106-6-allergy":
+              - row: "code_coding1_code"
+                value: "409137002"
+              - row: "code_text"
+                value: "No known drug allergy"
+              - row: "code_coding1_display"
+                value: "No known drug allergy"
+              - row: "code_coding1_system"
+                value: "http://snomed.info/sct"
     clinicalStatus:
       rand_options:
         affected_rows:

@@ -3,20 +3,20 @@
 cd au-fhir-test-data/Sparked.Csv2FhirMapping/ || exit
 
 declare -a resources=(
-    "Patient"
-    "HealthcareService"
-    "Organization"
-    "Location"
-    "Practitioner"
-    "PractitionerRole"
-    "RelatedPerson"
+    # "Patient"
+    # "HealthcareService"
+    # "Organization"
+    # "Location"
+    # "Practitioner"
+    # "PractitionerRole"
+    # "RelatedPerson"
     "Encounter"
     "AllergyIntolerance"
     "Condition"
     "Immunization"
     "Observation"
     "Procedure"
-    "Medication"
+    # "Medication"
     "MedicationRequest"
 )
 
