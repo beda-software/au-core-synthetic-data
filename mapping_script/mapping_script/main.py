@@ -77,7 +77,7 @@ def replace_data(generated_data, path_to_result, config, mapped_patient_ids):
         if resource_type in add_id_column:
             modified_df['id'] = [uuid.uuid4() for _ in range(len(modified_df))]
 
-        modified_df.replace(mapped_patient_ids, inplace=True)
+        modified_df = modified_df.replace(mapped_patient_ids)
 
         if resource_type in mapping_config:
             for mapping_config_item in mapping_config[resource_type]:
@@ -127,7 +127,7 @@ def main(path_to_original, path_to_config, path_to_result):
         if not target_patient_ids:
             print("No target_patient_ids found in the YAML configuration.")
 
-        mapped_patient_ids = dict(zip(target_patient_ids, list(data['patients']['Id'])))
+        mapped_patient_ids = dict(zip(list(data['patients']['Id']), target_patient_ids))
 
         save_patients_mapping_file(path_to_result, mapped_patient_ids)
         replace_data(data, path_to_result, config, mapped_patient_ids)

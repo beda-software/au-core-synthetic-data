@@ -11,7 +11,8 @@ def process_csv_files(folder_path):
 
         if os.path.isfile(file_path) and file_name.endswith('.csv'):
             print(f"Processing file: {file_name}")
-            process_csv_file(file_path)
+            if file_name != "patients.csv":
+                process_csv_file(file_path)
 
 
 def process_csv_file(file_path):
