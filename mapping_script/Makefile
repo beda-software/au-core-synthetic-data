@@ -8,4 +8,4 @@ cleanup-results:
 	rm -rf ./mapping_results/*
 
 clean-csv:
-	sudo poetry run python mapping_script/csv_cleaner.py
+	poetry run python mapping_script/csv_cleaner.py
