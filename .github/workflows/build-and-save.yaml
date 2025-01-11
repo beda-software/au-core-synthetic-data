@@ -9,10 +9,17 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
-      - uses: actions/setup-python@v1
-      - uses: knowsuchagency/poetry-install@v1
-        env:
-          POETRY_VIRTUALENVS_CREATE: false
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+      - name: Add Poetry to PATH
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Install dependencies in mapping_script
+        working-directory: ./mapping_script
+        run: poetry install
       - name: Initiate submodules
         run: git submodule update --init
       - name: Run Generate pipeline
