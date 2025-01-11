@@ -1,7 +1,6 @@
 synthea/output/*
 /results/*
 /mapping_script/mapping_results/*
-/mapping_script/csv_source/*
 Csv2FhirMapping-linux-x64-binaries/
 Csv2FhirMapping-linux-x64.zip
 validator_cli.jar
