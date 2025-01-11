@@ -33,6 +33,14 @@ run-csv-2-fhir-script:
 create-archive:
 	tar -czvf results.tar.gz results/
 
+download-csv2fhir:
+    wget https://github.com/hl7au/au-fhir-test-data-utils/releases/latest/download/Csv2FhirMapping-linux-x64.zip
+	unzip Csv2FhirMapping-linux-x64.zip
+	chmod +x Csv2FhirMapping-linux-x64-binaries/Csv2Fhir
+
+create-mapping-source-folder:
+	mkdir mapping_script/csv_source/
+
 pipeline-local: clean-previous-runs generate-basic-synthea-data copy-synthea-generated-data-to-mapping-script-folder run-mapping-scripts run-csv-2-fhir-script validate-results create-archive
 
-pipeline-ci: generate-basic-synthea-data copy-synthea-generated-data-to-mapping-script-folder run-mapping-scripts run-csv-2-fhir-script validate-results create-archive
+pipeline-ci: download-csv2fhir create-mapping-source-folder generate-basic-synthea-data copy-synthea-generated-data-to-mapping-script-folder run-mapping-scripts run-csv-2-fhir-script validate-results create-archive
