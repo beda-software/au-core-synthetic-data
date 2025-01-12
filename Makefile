@@ -5,7 +5,7 @@ validate-results:
 
 clean-previous-runs:
 	rm -rf results/csv/*
-	rn -rf results/json/*
+	rm -rf results/json/*
 	rm -rf au-fhir-test-data/testdata-csv/*
 	rm -rf au-fhir-test-data/generated/*
 	make -C mapping_script cleanup-source
